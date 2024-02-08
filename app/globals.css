@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.bg-p3 {
+  background-color: rgb(102, 101, 214);
+}

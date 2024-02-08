@@ -95,12 +95,48 @@ async function listData(auth) {
       range: "Sheet1!B5:I",
     });
   const rows = res.data.values;
-  console.log(rows);
+
+  const dateMap = new Map();
+
   if (!rows || rows.length === 0) {
     console.log("No data found.");
     return;
   }
-  console.log("Name, Major:");
+
+  rows.forEach((row) => {
+    const date = new Date(row[0]); // Convert cell to a Date object
+    row[0] = date;
+
+    let dateString =
+      "" +
+      date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      date.getDate(); // Get the date part as a string
+
+    if (dateMap.has(dateString)) {
+      let storedRow = dateMap.get(dateString).row; // Get the row already stored
+      let storedDate = new Date(storedRow[0]); // Convert its date cell to a Date object
+
+      if (date > storedDate) {
+        // If the current row's time is later than that of the stored row...
+        dateMap.set(dateString, {
+          row,
+        }); // Replace the stored row with the current row
+      }
+    } else {
+      dateMap.set(dateString, {
+        row,
+      }); // If there is no entry for the date yet, add the current row
+    }
+  });
+
+  rows.sort((a, b) => b[0] - a[0]);
+  console.log(dateMap);
+
+  // console.log(mostRecentRows);
+
   // rows.forEach((row) => {
   //   // Print columns A and E, which correspond to indices 0 and 4.
   //   console.log(`${row[0]}, ${row[7]}`);

@@ -1,6 +1,19 @@
-import { useEffect } from "react";
-import find from "../middleware/google";
+import NavHeader from "./components/NavHeader";
+import AddWallet from "./components/AddWallet";
+import Listings from "./components/Listings";
 
 export default function Home() {
-  return <main></main>;
+  return (
+    <>
+      <nav>
+        <NavHeader />
+      </nav>
+      <main className="flex justify-center">
+        <div className="m-auto  align-center py-32">
+          <AddWallet />
+          <Listings />
+        </div>
+      </main>
+    </>
+  );
 }
