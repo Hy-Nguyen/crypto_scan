@@ -35,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Test commit
-middleware/token.json
-middleware/credentials.json
+# Protecting Keys
+/middleware/*.json
