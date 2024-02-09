@@ -50,7 +50,7 @@ export default function AddWallet() {
       <div>
         <button
           onClick={handleAdd}
-          className="bg-p3 hover:bg-blue-700 text-white py-2 px-8 h-12 rounded-r-xl"
+          className="bg-p3 hover:bg-p3 text-white py-2 px-8 h-12 rounded-r-xl"
         >
           Add
         </button>

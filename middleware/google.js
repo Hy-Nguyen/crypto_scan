@@ -133,7 +133,8 @@ async function listData(auth) {
   });
 
   rows.sort((a, b) => b[0] - a[0]);
-  console.log(dateMap);
+
+  return rows;
 
   // console.log(mostRecentRows);
 
@@ -143,4 +144,10 @@ async function listData(auth) {
   // });
 }
 
-authorize().then(listData).catch(console.error);
+export default async function getListings() {
+  const rows = await authorize()
+    .then(listData)
+    .catch(console.error);
+
+  return rows;
+}

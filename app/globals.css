@@ -35,3 +35,9 @@ body {
 .bg-p3 {
   background-color: rgb(102, 101, 214);
 }
+.hover\:bg-p3:hover {
+  background-color: rgb(36, 34, 179);
+}
+.bg-p3-alt {
+  background-color: rgb(156, 158, 202);
+}
