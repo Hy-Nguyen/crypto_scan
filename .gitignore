@@ -36,3 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Test commit
+middleware/token.json
+middleware/credentials.json
