@@ -13,6 +13,7 @@ export default async function Listings() {
   const uniqueDates = listings
     .map((listing: any) => {
       let date = new Date(listing[0]);
+
       return `${
         date.getMonth() + 1
       }/${date.getDate()}/${date.getFullYear()}`;
@@ -34,7 +35,7 @@ export default async function Listings() {
   console.log(uniqueDates[0]);
   return (
     <>
-      <div>{listings[0]}</div>
+      <div>{listings[0][0]}</div>
     </>
   );
 }
