@@ -148,6 +148,6 @@ export default async function getListings() {
   const rows = await authorize()
     .then(listData)
     .catch(console.error);
-
+  console.log("Hi");
   return rows;
 }
