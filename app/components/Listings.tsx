@@ -4,7 +4,7 @@ import { list } from "postcss";
 export default async function Listings() {
   var listings = [];
   listings = await getListings();
-  if (listing) {
+  if (listings) {
     listings = listings.map((item: any) => {
       const newItem = [...item]; // create copy of item array
       newItem[0] = newItem[0].toString(); // convert first element (Date object) to string
