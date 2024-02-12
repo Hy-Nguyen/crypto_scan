@@ -28,7 +28,7 @@ function getCitrus(address = "") {
 
   // Console Log Tests for Citrus:
   console.log(citrusres);
-  Logger.log(
+  console.log(
     "Citrus Loans Total: " + citrusTotal
   );
 }
