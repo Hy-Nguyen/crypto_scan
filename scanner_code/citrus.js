@@ -1,8 +1,10 @@
 const fetch = require("node-fetch");
 
 async function getCitrus(address = "") {
-  var wallet =
-    "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  if (wallet == "") {
+    var wallet =
+      "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  }
 
   // Citrus
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;

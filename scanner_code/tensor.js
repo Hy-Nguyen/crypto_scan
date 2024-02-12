@@ -4,10 +4,14 @@ async function getTensor(
   wallet = "",
   api_key = ""
 ) {
-  wallet =
-    "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
-  api_key =
-    "da2b8de2-2234-4d30-bf6e-0de556ed5858";
+  if (wallet == "") {
+    wallet =
+      "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  }
+  if (api_key == "") {
+    api_key =
+      "da2b8de2-2234-4d30-bf6e-0de556ed5858";
+  }
 
   const variables = { owner: wallet };
 
@@ -142,7 +146,6 @@ async function getTensor(
       var totalPoolNFTValue = 0;
       var totalPoolFeeValue = 0;
       var totalPoolLiquidity = 0;
-
 
       const div = 1000000000;
       for (const pool of data.data
