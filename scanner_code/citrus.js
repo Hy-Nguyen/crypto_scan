@@ -39,6 +39,8 @@ function getCitrus(address = "") {
   fs.writeFile('citrus.json', citrusJson, 'utf8', (err) => {
     if (err) {
       console.error("There was an error writing to the file: ", err);
+      console.log("Hi"
+      )
       return;
     }
   
