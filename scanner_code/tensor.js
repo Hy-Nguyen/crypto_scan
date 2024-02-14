@@ -165,15 +165,15 @@ async function getTensor(
           pool.pool.solBalance / div;
         totalPoolLiquidity += poolLiquidityAmount;
       }
-      Logger.log(
-        `Total NFT Pool Value: ${totalPoolNFTValue}`
-      );
-      Logger.log(
-        `Total NFT Fee Value: ${totalPoolFeeValue}`
-      );
-      Logger.log(
-        `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
-      );
+      // Logger.log(
+      //   `Total NFT Pool Value: ${totalPoolNFTValue}`
+      // );
+      // Logger.log(
+      //   `Total NFT Fee Value: ${totalPoolFeeValue}`
+      // );
+      // Logger.log(
+      //   `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
+      // );
 
       // Array for NFT values and Wallets
       const tensorUserData = [];
@@ -231,4 +231,4 @@ async function getTensor(
 
 // HI
 
-// asdasdgit 
+// asdasdgit
