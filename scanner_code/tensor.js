@@ -161,55 +161,70 @@ async function getTensor(
           pool.pool.mmFeeBalance / div;
         totalPoolFeeValue += poolFeeAmount;
 
-    var poolLiquidityAmount =
-      pool.pool.solBalance / div;
-    totalPoolLiquidity += poolLiquidityAmount;
-  }
-  Logger.log(
-    `Total NFT Pool Value: ${totalPoolNFTValue}`
-  );
-  Logger.log(
-    `Total NFT Fee Value: ${totalPoolFeeValue}`
-  );
-  Logger.log(
-    `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
-  );
+        var poolLiquidityAmount =
+          pool.pool.solBalance / div;
+        totalPoolLiquidity += poolLiquidityAmount;
+      }
+      Logger.log(
+        `Total NFT Pool Value: ${totalPoolNFTValue}`
+      );
+      Logger.log(
+        `Total NFT Fee Value: ${totalPoolFeeValue}`
+      );
+      Logger.log(
+        `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
+      );
 
+      // Array for NFT values and Wallets
+      const tensorUserData = [];
 
-  // Array for NFT values and Wallets
-  const tensorUserData = []
+      // Intialize
+      const tensorData = {
+        walletAddress: wallet,
+        nftPoolValue: totalPoolNFTValue,
+        nftFeeValue: totalPoolFeeValue,
+        nftLiquidityPoolValue: totalPoolLiquidity,
+      };
 
-  // Intialize 
-  const tensorData = {
-    walletAddress: wallet,
-    nftPoolValue: totalPoolNFTValue,
-    nftFeeValue: totalPoolFeeValue,
-    nftLiquidityPoolValue: totalPoolLiquidity 
-  };
+      // Check if there is a existing Json File
+      try {
+        const data = fs.readFileSync(
+          "tensor.json",
+          "utf8"
+        );
+        tensorUserData = JSON.parse(data);
+      } catch (err) {}
 
-  // Check if there is a existing Json File
-  try {
-    const data = fs.readFileSync('tensor.json', 'utf8');
-    tensorUserData = JSON.parse(data);
-  } catch (err) {
+      // Push tensor data to tensor user array
+      tensorUserData.push(tensorData);
 
-  }
+      // Convert UserData to JSON
+      const jsonData = JSON.stringfy(
+        tensorUserData,
+        null,
+        2
+      );
 
-  // Push tensor data to tensor user array
-  tensorUserData.push(tensorData)
-
-  // Convert UserData to JSON
-  const jsonData = JSON.stringfy(tensorUserData,null,2)
-
-
-  // Write JSON Data to Json File
-  fs.writeFile('tensor.json', jsonData, 'utf8', (err) => {
-    if (err) {
-      console.error("There was an error writing to the file: ", err);
-      return;
+      // Write JSON Data to Json File
+      fs.writeFile(
+        "tensor.json",
+        jsonData,
+        "utf8",
+        (err) => {
+          if (err) {
+            console.error(
+              "There was an error writing to the file: ",
+              err
+            );
+            return;
+          }
+        }
+      );
     }
-
-  });
-
-
+  } catch (error) {
+    console.error(
+      "There was a problem with your fetch operation: ",
+      error
+    );
+  }
 }
