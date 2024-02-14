@@ -36,17 +36,24 @@ async function getCitrus(address = "") {
       var citrusTotal =
         currentLoaned + pendingOffers;
 
-      // Console Log Tests for Citrus:
-      console.log(citrusres);
-      console.log(
-        "Citrus Loans Total: " + citrusTotal
-      );
+  // Console Log Tests for Citrus:
+  console.log(citrusres);
+  Logger.log(
+    "Citrus Loans Total: " + citrusTotal);
+
+
+  // Convert values into JSON 
+  const citrusJson = JSON.stringy(citrusTotal);
+  
+  // Parse citrusTotal to a JSON file
+  fs.writeFile('citrus.json', citrusJson, 'utf8', (err) => {
+    if (err) {
+      console.error("There was an error writing to the file: ", err);
+      console.log("Hi"
+      )
+      return;
     }
-  } catch (e) {
-    console.log(
-      "There was a problem with your fetch operation: " +
-        e.message
-    );
-  }
-}
-getCitrus();
+  
+  });
+  
+};
