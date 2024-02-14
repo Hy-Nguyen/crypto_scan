@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wallet Addresses</title>
+</head>
+<body>
+
+<!-- Form for selecting a number of wallets -->
+<form id="numberForm">
+  <label for="numberInput">Pick a number from 1 to 5:</label>
+  <input type="number" id="numberInput" name="numberInput" min="1" max="5">
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Container for wallet address input form -->
+<div id="walletFormContainer" style="display: none;">
+  <form id="walletForm">
+    <h3>Enter Wallet Addresses</h3>
+    <div id="walletInputs"></div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+
+<!-- link to Build1.js -->
+<script src="Build1-Testing.js"></script>
+<script>
+  // Event listener for numberForm submission
+  document.getElementById('numberForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    const selectedNumber = parseInt(document.getElementById('numberInput').value);
+    // Check if the selected number is within the range
+    if (selectedNumber >= 1 && selectedNumber <= 5) {
+      const walletFormContainer = document.getElementById('walletFormContainer');
+      walletFormContainer.style.display = 'block'; // Display wallet form container
+      const walletInputs = document.getElementById('walletInputs');
+      walletInputs.innerHTML = ''; // Clear previous inputs
+      
+      // Create input fields for wallet addresses based on the selected number
+      for (let i = 0; i < selectedNumber; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'walletAddress';
+        input.placeholder = `Wallet address ${i + 1}`;
+        walletInputs.appendChild(input); // Append input field
+        walletInputs.appendChild(document.createElement('br')); // Append line break
+      }
+    } else {
+      alert('Please select a number between 1 and 5.'); // Alert for invalid input
+    }
+  });
+
+  // Event listener for walletForm submission
+  document.getElementById('walletForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    const walletAddresses = []; // Array to store wallet addresses
+    const inputs = document.getElementsByName('walletAddress');
+    // Iterate over input fields to retrieve wallet addresses
+    inputs.forEach(input => {
+      if (input.value.trim() !== '') {
+        // Push non-empty addresses to array
+        walletAddresses.push(input.value.trim()); 
+      }
+    });
+    // Log wallet addresses
+    console.log('Wallet addresses:', walletAddresses); 
+    // Further processing of wallet addresses can be done here
+  });
+</script>
+
+</body>
+</html>

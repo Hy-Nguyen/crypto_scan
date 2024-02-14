@@ -117,6 +117,7 @@ function getTensor(wallet = "", api_key = "") {
         lastTransactedAt
         __typename
         }`;
+
   // Req header
   const headers = {
     "Content-Type": "application/json",
@@ -169,4 +170,42 @@ function getTensor(wallet = "", api_key = "") {
   Logger.log(
     `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
   );
+
+
+  // Array for NFT values and Wallets
+  const tensorUserData = []
+
+  // Intialize 
+  const tensorData = {
+    walletAddress: wallet,
+    nftPoolValue: totalPoolNFTValue,
+    nftFeeValue: totalPoolFeeValue,
+    nftLiquidityPoolValue: totalPoolLiquidity 
+  };
+
+  // Check if there is a existing Json File
+  try {
+    const data = fs.readFileSync('tensor.json', 'utf8');
+    tensorUserData = JSON.parse(data);
+  } catch (err) {
+
+  }
+
+  // Push tensor data to tensor user array
+  tensorUserData.push(tensorData)
+
+  // Convert UserData to JSON
+  const jsonData = JSON.stringfy(tensorUserData,null,2)
+
+
+  // Write JSON Data to Json File
+  fs.writeFile('tensor.json', jsonData, 'utf8', (err) => {
+    if (err) {
+      console.error("There was an error writing to the file: ", err);
+      return;
+    }
+
+  });
+
+
 }

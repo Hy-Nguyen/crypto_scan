@@ -29,6 +29,19 @@ function getCitrus(address = "") {
   // Console Log Tests for Citrus:
   console.log(citrusres);
   Logger.log(
-    "Citrus Loans Total: " + citrusTotal
-  );
-}
+    "Citrus Loans Total: " + citrusTotal);
+
+
+  // Convert values into JSON 
+  const citrusJson = JSON.stringy(citrusTotal);
+  
+  // Parse citrusTotal to a JSON file
+  fs.writeFile('citrus.json', citrusJson, 'utf8', (err) => {
+    if (err) {
+      console.error("There was an error writing to the file: ", err);
+      return;
+    }
+  
+  });
+  
+};
