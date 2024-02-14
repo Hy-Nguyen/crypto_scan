@@ -1,8 +1,8 @@
-const fetch = require("node-fetch");
-
-async function getCitrus(address = "") {
+export default async function getCitrus(
+  wallet = ""
+) {
   if (wallet == "") {
-    var wallet =
+    wallet =
       "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
   }
 
@@ -37,10 +37,16 @@ async function getCitrus(address = "") {
         currentLoaned + pendingOffers;
 
       // Console Log Tests for Citrus:
-      console.log(citrusres);
-      console.log(
-        "Citrus Loans Total: " + citrusTotal
-      );
+      // console.log(citrusres);
+      // console.log(~
+      //   "Citrus Loans Total: " + citrusTotal
+      // );
+      return {
+        citrusres,
+        currentLoaned,
+        pendingOffers,
+        citrusTotal,
+      };
     }
   } catch (e) {
     console.log(

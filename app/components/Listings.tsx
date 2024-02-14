@@ -1,5 +1,4 @@
 import getListings from "@/middleware/google";
-import { list } from "postcss";
 
 export default async function Listings() {
   var listings = [];

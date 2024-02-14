@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-async function getTensor(
+export default async function getTensor(
   wallet = "",
   api_key = ""
 ) {
