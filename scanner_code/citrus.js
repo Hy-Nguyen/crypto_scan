@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export default async function getCitrus(
   wallet = ""
 ) {
@@ -5,8 +7,6 @@ export default async function getCitrus(
     wallet =
       "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
   }
-
-  // Citrus
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
   var citrusHeader = {
     headers: {
@@ -17,42 +17,33 @@ export default async function getCitrus(
     },
   };
 
-  try {
-    var citrusResponse = await fetch(
-      citrusUrl,
-      citrusHeader
-    );
+  var citrusResponse = await fetch(
+    citrusUrl,
+    citrusHeader
+  );
 
-    if (!citrusResponse.ok) {
-      throw new Error(
-        `HTTP error! status: ${citrusResponse.status}`
-      );
-    } else {
-      var citrusres = await citrusResponse.json();
-      var currentLoaned =
-        citrusres["loanSummary"]["currentLoaned"];
-      var pendingOffers =
-        citrusres["loanSummary"]["pendingOffers"];
-      var citrusTotal =
-        currentLoaned + pendingOffers;
+  var citrusResponseJson =
+    await citrusResponse.json();
 
-      // Console Log Tests for Citrus:
-      // console.log(citrusres);
-      // console.log(~
-      //   "Citrus Loans Total: " + citrusTotal
-      // );
-      return {
-        citrusres,
-        currentLoaned,
-        pendingOffers,
-        citrusTotal,
-      };
-    }
-  } catch (e) {
-    console.log(
-      "There was a problem with your fetch operation: " +
-        e.message
-    );
-  }
+  var currentLoaned =
+    citrusResponseJson["loanSummary"][
+      "currentLoaned"
+    ];
+  var pendingOffers =
+    citrusResponseJson["loanSummary"][
+      "pendingOffers"
+    ];
+
+  var citrusTotal = currentLoaned + pendingOffers;
+
+  console.log(
+    "Citrus Loans Total: " + citrusTotal
+  );
+  return {
+    loaned: currentLoaned,
+    offers: pendingOffers,
+    total: citrusTotal,
+  };
 }
+
 getCitrus();
