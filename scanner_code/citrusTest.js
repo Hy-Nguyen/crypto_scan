@@ -1,10 +1,10 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
-export default async function getCitrus(
-  wallet = ""
-) {
-  console.log("HI" + wallet);
-
+async function getCitrus(wallet = "") {
+  if (wallet == "") {
+    wallet =
+      "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  }
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
   var citrusHeader = {
     headers: {
@@ -44,4 +44,6 @@ export default async function getCitrus(
   };
 }
 
-getCitrus();
+getCitrus(
+  "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1"
+);

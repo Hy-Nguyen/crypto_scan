@@ -1,46 +1,48 @@
-"use client";
 import React, {
   ChangeEvent,
   useState,
 } from "react";
 
-interface WalletProps {
-  address: string;
-}
-
-export default function AddWallet(props: {
+interface WalletFormProps {
   onSubmitWalletData: (data: {
     walletType: string;
     walletAddress: string;
   }) => void;
-}) {
+}
+
+export default function AddWallet({
+  onSubmitWalletData,
+}: WalletFormProps) {
+
   const walletArr = ["SOL", "Tensor", "Doge"];
 
   const [walletType, setWalletType] = useState(
     walletArr[0]
   );
+  const [walletAddress, setWalletAddress] =
+    useState("");
 
-  const [addressList, setaddressList] = useState<
-    WalletProps[]
-  >([]);
-
-  function handleDropdownChange(event: any) {
+  function handleDropdownChange(
+    event: ChangeEvent<HTMLSelectElement>
+  ) {
     setWalletType(event.target.value);
   }
 
-  function handleAddressChange(event: any) {
-    setaddressList(event.target.value);
+  function handleAddressChange(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    setWalletAddress(event.target.value);
   }
 
   function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault();
-    console.log(`Wallet Type: ${walletType}`);
-    console.log(
-      `Wallet Address: ${addressList}`
-    );
-    setaddressList(addressList.push());
+    onSubmitWalletData({
+      walletType,
+      walletAddress,
+    });
+    console.log(walletAddress, walletType);
   }
 
   return (
@@ -63,7 +65,7 @@ export default function AddWallet(props: {
       <input
         type="text"
         placeholder="Enter Wallet Address"
-        value={addressList[0]}
+        value={walletAddress}
         onChange={handleAddressChange}
         className="text-black h-12 w-96 pl-2"
       />

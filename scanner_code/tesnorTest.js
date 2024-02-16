@@ -1,8 +1,4 @@
-import fetch from "node-fetch";
-
-export default async function getTensor(
-  wallet = ""
-) {
+async function getTensor(wallet = "") {
   if (wallet == "") {
     wallet =
       "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
@@ -188,3 +184,4 @@ export default async function getTensor(
     );
   }
 }
+getTensor();
