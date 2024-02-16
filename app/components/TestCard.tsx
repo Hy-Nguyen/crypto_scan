@@ -1,4 +1,4 @@
-import getCitrus from "@/scanner_code/citrus"; // Assuming this is an imported function
+import getCitrus from "@/scanner_code/citrus";
 import getTensor from "@/scanner_code/tensor";
 import { Divider } from "@nextui-org/react";
 import { useEffect, useState } from "react";
@@ -15,10 +15,20 @@ export default async function ViewCard(props: {
 
   return (
     <>
-      <div className="bg-white text-black rounded-xl p-6 w-full flex-row my-3">
+      <div className="bg-white text-black rounded-2xl p-6 w-full flex-row my-3">
         <div className="w-full pl-3 pb-3 ">
-          <h2>Wallet: {props.walletAddress}</h2>
+          <h1>Wallet: </h1>
+          <a
+            href={`https://citrus.famousfoxes.com/profile/${props.walletAddress}`}
+            target="_blank"
+            className="text-xs hover:text-slate-500 text-sky-400"
+          >
+            {props.walletAddress}
+          </a>
+          <Divider className="my-3  " />
+
           <h2>Citrus:</h2>
+
           <div className="pl-4  whitespace-nowrap inline-block">
             <p className="inline-block">
               Current Loaned: {citrus?.loaned}

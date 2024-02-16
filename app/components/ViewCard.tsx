@@ -27,17 +27,33 @@ export default function ViewCard(props: {
 
   useEffect(() => {
     async function getData() {
-      setTensor(
-        await getTensor(props.walletAddress)
-      );
-      setCitrus(
-        await getCitrus(props.walletAddress)
-      );
-      setIsLoading(false); // Set loading state to false once data is fetched
+      try {
+        console.log("hi1");
+
+        const tensorData = await getTensor(
+          props.walletAddress
+        );
+        setTensor(tensorData);
+        console.log("hi2");
+
+        const citrusData = await getCitrus(
+          props.walletAddress
+        );
+        setCitrus(citrusData);
+        console.log("hi3");
+
+        setIsLoading(false); // Set loading state to false once data is fetched
+        console.log("hi4");
+      } catch (error) {
+        console.error(
+          "Failed to fetch data: ",
+          error
+        );
+      }
     }
 
     getData(); // Invoke getData function here
-  }, []);
+  }, [props.walletAddress]);
 
   if (isLoading) {
     // If data is loading, return 'Loading...'
@@ -61,7 +77,7 @@ export default function ViewCard(props: {
         <Divider className="my-3  " />
         <div className="w-full pl-3 pt-3">
           <h2>Tensor:</h2>
-          <div className="pl-4  whitespace-nowrap inline-block">
+          <div className="pl-4  inline-block">
             <p className="inline-block">
               Total NFT Pool Value:
               {" " + tensor?.NFTValue}
@@ -75,7 +91,6 @@ export default function ViewCard(props: {
               {" " + tensor?.PoolLiquidity}
             </p>
           </div>
-          D
         </div>
       </div>
     </>

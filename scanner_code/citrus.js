@@ -3,8 +3,6 @@ import fetch from "node-fetch";
 export default async function getCitrus(
   wallet = ""
 ) {
-  console.log("HI" + wallet);
-
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
   var citrusHeader = {
     headers: {
@@ -43,5 +41,3 @@ export default async function getCitrus(
     total: citrusTotal.toFixed(2),
   };
 }
-
-getCitrus();

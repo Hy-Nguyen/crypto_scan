@@ -8,6 +8,50 @@ import { card } from "@nextui-org/react";
 import TestCard from "./TestCard";
 import TestCard2 from "./TestCard2";
 import SummaryTable from "./SummaryTable";
+import getCitrus from "@/scanner_code/citrus"; // Assuming this is an imported function
+import getTensor from "@/scanner_code/tensor";
+
+interface CitrusData {
+  loaned: string;
+  offers: string;
+  total: string;
+}
+
+interface TensorData {
+  NFTValue: string;
+  FeeValue: string;
+  PoolLiquidity: string;
+}
+
+interface ResultData {
+  [key: string]: {
+    citrus: CitrusData;
+    tensor: TensorData;
+  };
+}
+const fetchData = async (
+  addresses: string[]
+): Promise<ResultData> => {
+  const result: ResultData = {};
+
+  const fetchPromises = addresses.map(
+    async (address) => {
+      // Assuming both getCitrus and getTensor take a string argument
+      const citrusData = await getCitrus(address);
+      const tensorData = await getTensor(address);
+
+      result[address] = {
+        citrus: citrusData,
+        tensor: tensorData,
+      };
+    }
+  );
+
+  // Wait for all fetches to complete
+  await Promise.all(fetchPromises);
+
+  return result;
+};
 
 export default function WalletManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];
@@ -43,11 +87,11 @@ export default function WalletManager() {
   }
 
   return (
-    <div className="m-auto align-center py-32">
-      <div>
+    <div className="align-center py-32 mx-40">
+      <div className="">
         <form
           onSubmit={handleSubmit}
-          className="w-full flex flex-row m-auto"
+          className=" flex flex-row justify-center pb-10"
         >
           <select
             value={walletType}
@@ -66,7 +110,7 @@ export default function WalletManager() {
             placeholder="Enter Wallet Address"
             value={walletAddress}
             onChange={handleAddressChange}
-            className="text-black h-12 w-96 pl-2"
+            className="text-black h-12 w-full pl-2"
           />
 
           <button
@@ -77,20 +121,26 @@ export default function WalletManager() {
           </button>
         </form>
       </div>
-      <div className="flex-col">
-        <div>
+      <div className="flex w-full">
+        <div className="w-1/2 mr-1.5">
           {/* {addressArr.map((wallet, key) => (
             <ViewCard
               walletAddress={wallet}
               key={key}
             />
           ))} */}
-          <TestCard walletAddress="428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1" />
-          <TestCard walletAddress="G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12" />
-          <TestCard walletAddress="7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM" />
+          <TestCard
+            walletAddress={addressArr[0]}
+          />
+          <TestCard
+            walletAddress={addressArr[1]}
+          />
+          <TestCard
+            walletAddress={addressArr[2]}
+          />
         </div>
-        <div>
-          <SummaryTable />
+        <div className="w-1/2 ml-1.5">
+          <SummaryTable wallets={addressArr} />
         </div>
       </div>
     </div>
