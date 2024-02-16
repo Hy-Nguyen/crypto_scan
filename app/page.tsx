@@ -1,5 +1,5 @@
 import NavHeader from "./components/NavHeader";
-import WalletManager from "./components/Content";
+import WalletManager from "./components/WalletManager";
 
 export default function Home() {
   

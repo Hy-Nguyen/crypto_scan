@@ -7,25 +7,20 @@ import ViewCard from "./ViewCard";
 import { card } from "@nextui-org/react";
 import TestCard from "./TestCard";
 import TestCard2 from "./TestCard2";
-
-interface WalletData {
-  walletType: string;
-  walletAddress: string;
-}
+import SummaryTable from "./SummaryTable";
 
 export default function WalletManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];
+  const addressArr = [
+    "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1",
+    "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
+    "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
+  ];
 
   function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault();
-    setWalletCards((prevCards: WalletData[]) => [
-      ...prevCards,
-      { walletType, walletAddress },
-    ]);
-
-    setHasAddress(true);
   }
 
   const [walletType, setWalletType] = useState(
@@ -46,13 +41,6 @@ export default function WalletManager() {
   ) {
     setWalletAddress(event.target.value);
   }
-
-  const [walletCards, setWalletCards] = useState<
-    WalletData[]
-  >([]);
-
-  const [hasAddress, setHasAddress] =
-    useState(false);
 
   return (
     <div className="m-auto align-center py-32">
@@ -89,26 +77,21 @@ export default function WalletManager() {
           </button>
         </form>
       </div>
-      <div>
-        {/* {hasAddress &&
-          walletCards.map((cardData, index) => {
-            {
-              console.log(hasAddress);
-            }
-
-            return (
-              <>
-                {walletCards.length}
-                <TestCard
-                  walletAddress={
-                    cardData.walletAddress
-                  }
-                  key={index}
-                />
-              </>
-            );
-          })} */}
-          <TestCard2/>
+      <div className="flex-col">
+        <div>
+          {/* {addressArr.map((wallet, key) => (
+            <ViewCard
+              walletAddress={wallet}
+              key={key}
+            />
+          ))} */}
+          <TestCard walletAddress="428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1" />
+          <TestCard walletAddress="G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12" />
+          <TestCard walletAddress="7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM" />
+        </div>
+        <div>
+          <SummaryTable />
+        </div>
       </div>
     </div>
   );
