@@ -1,10 +1,11 @@
 import getListings from "@/middleware/google";
+import { list } from "postcss";
 
 export default async function Listings() {
   var listings = [];
   listings = await getListings();
   if (listings) {
-    listings = listings.map((item) => {
+    listings = listings.map((item: any) => {
       const newItem = [...item]; // create copy of item array
       newItem[0] = newItem[0].toString(); // convert first element (Date object) to string
       return newItem; // return updated item array
@@ -13,10 +14,11 @@ export default async function Listings() {
     const uniqueDates = listings
       .map((listing: any) => {
         let date = new Date(listing[0]);
-
-        return `${
+        var dateString = `${
           date.getMonth() + 1
         }/${date.getDate()}/${date.getFullYear()}`;
+        listing[0] = dateString;
+        return dateString;
       })
       .reduce(
         (
