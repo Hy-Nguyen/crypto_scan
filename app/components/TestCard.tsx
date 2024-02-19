@@ -1,6 +1,7 @@
 import getCitrus from "@/scanner_code/citrus";
 import getTensor from "@/scanner_code/tensor";
 import { Divider } from "@nextui-org/react";
+import { unstable_noStore } from "next/cache";
 import { useEffect, useState } from "react";
 
 export default async function ViewCard(props: {

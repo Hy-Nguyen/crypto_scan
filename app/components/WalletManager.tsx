@@ -2,6 +2,7 @@
 import React, {
   useState,
   ChangeEvent,
+  Suspense,
 } from "react";
 import ViewCard from "./ViewCard";
 import { card } from "@nextui-org/react";
@@ -10,6 +11,7 @@ import TestCard2 from "./TestCard2";
 import SummaryTable from "./SummaryTable";
 import getCitrus from "@/scanner_code/citrus"; // Assuming this is an imported function
 import getTensor from "@/scanner_code/tensor";
+import CardLoading from "./Skeleton";
 
 interface CitrusData {
   loaned: string;
@@ -129,15 +131,22 @@ export default function WalletManager() {
               key={key}
             />
           ))} */}
-          <TestCard
-            walletAddress={addressArr[0]}
-          />
-          <TestCard
-            walletAddress={addressArr[1]}
-          />
-          <TestCard
-            walletAddress={addressArr[2]}
-          />
+
+          <Suspense fallback={<CardLoading />}>
+            <TestCard
+              walletAddress={addressArr[0]}
+            />
+          </Suspense>
+          <Suspense fallback={<CardLoading />}>
+            <TestCard
+              walletAddress={addressArr[2]}
+            />
+          </Suspense>
+          <Suspense fallback={<CardLoading />}>
+            <TestCard
+              walletAddress={addressArr[1]}
+            />
+          </Suspense>
         </div>
         <div className="w-1/2 ml-1.5">
           <SummaryTable wallets={addressArr} />
