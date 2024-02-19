@@ -58,7 +58,7 @@ export default function WalletManager() {
   const addressArr = [
     "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1",
     "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
-    "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
+    "D3kf1Lo9a6GdzLStHoxokXHPTBfcAf19Vvn6pycEKEsf",
   ];
 
   function handleSubmit(
