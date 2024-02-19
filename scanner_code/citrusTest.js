@@ -37,6 +37,11 @@ async function getCitrus(wallet = "") {
   console.log(
     "Citrus Loans Total: " + citrusTotal
   );
+  console.log({
+    loaned: currentLoaned.toFixed(2),
+    offers: pendingOffers.toFixed(2),
+    total: citrusTotal.toFixed(2),
+  });
   return {
     loaned: currentLoaned.toFixed(2),
     offers: pendingOffers.toFixed(2),

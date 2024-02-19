@@ -7,12 +7,24 @@ import { useEffect, useState } from "react";
 export default async function ViewCard(props: {
   walletAddress: string;
 }) {
-  const citrus = await getCitrus(
-    props.walletAddress
-  );
-  const tensor = await getTensor(
-    props.walletAddress
-  );
+  // const citrus = await getCitrus(
+  //   props.walletAddress
+  // );
+  // const tensor = await getTensor(
+  //   props.walletAddress
+  // );
+
+  // Hard Coded Response for Substitute
+  var citrus = {
+    loaned: "445.69",
+    offers: "1084.49",
+    total: "1530.18",
+  };
+  var tensor = {
+    NFTValue: "119.93",
+    FeeValue: "18.31",
+    PoolLiquidity: "279.56",
+  };
 
   return (
     <>
