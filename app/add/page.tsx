@@ -1,11 +1,10 @@
-import NavHeader from "../components/NavHeader";
-import WalletManager from "./components/WalletManager1";
+import AccountManager from "../testing/components/AccountManger";
 
 export default function Home() {
   return (
     <>
       <main className="flex flex-col justify-center bg-p3-alt w-full">
-        <WalletManager />
+        <AccountManager />
       </main>
     </>
   );
