@@ -31,29 +31,6 @@ interface ResultData {
     tensor: TensorData;
   };
 }
-const fetchData = async (
-  addresses: string[]
-): Promise<ResultData> => {
-  const result: ResultData = {};
-
-  const fetchPromises = addresses.map(
-    async (address) => {
-      // Assuming both getCitrus and getTensor take a string argument
-      const citrusData = await getCitrus(address);
-      const tensorData = await getTensor(address);
-
-      result[address] = {
-        citrus: citrusData,
-        tensor: tensorData,
-      };
-    }
-  );
-
-  // Wait for all fetches to complete
-  await Promise.all(fetchPromises);
-
-  return result;
-};
 
 export default function WalletManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];

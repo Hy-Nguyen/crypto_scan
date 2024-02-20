@@ -31,13 +31,22 @@ export default async function ViewCard(props: {
           <h2>Citrus:</h2>
 
           <div className="pl-4  whitespace-nowrap inline-block">
-            <p className="inline-block">
-              Current Loaned: {citrus?.loaned}
-            </p>
-            <p>
-              Pending Offers: {citrus?.offers}
-            </p>
-            <p>Citrus Total: {citrus?.total}</p>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Current Loaned:</th>
+                  <td>{citrus?.loaned}</td>
+                </tr>
+                <tr>
+                  <th>Pending Offers:</th>
+                  <td>{citrus?.offers}</td>
+                </tr>
+                <tr>
+                  <th>Citrus Total:</th>
+                  <td>{citrus?.total}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <Divider className="my-3  " />
