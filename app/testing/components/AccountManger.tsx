@@ -37,6 +37,7 @@ export default function AccountManager() {
   const [walletHolding, setWalletHolding] =
     useState<string[]>([]);
 
+  // SUBMIT PROCESSING
   function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ) {
@@ -44,6 +45,8 @@ export default function AccountManager() {
 
     console.log(walletAddress);
 
+    // THIS FUNCTION WILL ADD THE NEW ADDRESS
+    // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
     setWalletHolding([
       ...walletHolding,
       walletAddress,
