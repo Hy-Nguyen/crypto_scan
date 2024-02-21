@@ -1,4 +1,3 @@
-"use client";
 import CardLoading from "@/app/components/Skeleton";
 import SummaryTable from "@/app/components/SummaryTable";
 import TestCard from "./TestCard";
@@ -7,8 +6,6 @@ import {
   Suspense,
   useState,
 } from "react";
-
-
 
 export default function WalletManager() {
   const addressArr = [

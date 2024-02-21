@@ -1,23 +1,21 @@
 "use client";
 
-import CardLoading from "@/app/components/Skeleton";
-import SummaryTable from "@/app/components/SummaryTable";
-import TestCard from "./TestCard";
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Divider,
-  Link,
   Image,
 } from "@nextui-org/react";
 
 import {
   ChangeEvent,
-  Suspense,
+  useContext,
   useState,
 } from "react";
+
+import { ArrayContext } from "@/app/providers";
 
 export default function AccountManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];
@@ -26,6 +24,8 @@ export default function AccountManager() {
   //     "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
   //     "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
   //   ];
+
+  const { setArray } = useContext(ArrayContext);
 
   const [walletType, setWalletType] = useState(
     walletArr[0]
@@ -48,6 +48,7 @@ export default function AccountManager() {
       ...walletHolding,
       walletAddress,
     ]);
+    setArray([...walletHolding, walletAddress]);
     console.log(walletHolding);
   }
 
