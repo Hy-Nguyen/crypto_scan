@@ -174,10 +174,10 @@ export default async function getTensor(
       // );
 
       // Array for NFT values and Wallets
-      const tensorUserData = [];
+      var tensorUserData = [];
 
       // Intialize
-      const tensorData = {
+      var tensorData = {
         walletAddress: wallet,
         nftPoolValue: totalPoolNFTValue,
         nftFeeValue: totalPoolFeeValue,
