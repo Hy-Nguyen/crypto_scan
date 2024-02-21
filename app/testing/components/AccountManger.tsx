@@ -45,13 +45,27 @@ export default function AccountManager() {
 
     console.log(walletAddress);
 
+    validateWalletAdd()
+
     // THIS FUNCTION WILL ADD THE NEW ADDRESS
     // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
-    setWalletHolding([
-      ...walletHolding,
-      walletAddress,
-    ]);
-    console.log(walletHolding);
+
+    function validateWalletAdd() {
+      if (walletHolding.includes(walletAddress)) {
+        alert("The wallet address you entered has already been stored! Try entering another wallet address!")
+      } else {
+        setWalletHolding([
+          ...walletHolding,
+          walletAddress,
+        ]);
+
+        console.log(walletHolding);
+      }
+    }; // End of validateWalletAdd
+
+
+    
+
   }
 
   function handleDropdownChange(
