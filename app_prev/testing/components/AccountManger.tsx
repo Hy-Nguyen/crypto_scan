@@ -15,7 +15,7 @@ import {
   useState,
 } from "react";
 
-import { ArrayContext } from "@/app/providers";
+import { ArrayContext } from "@/app_prev/providers";
 
 export default function AccountManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];

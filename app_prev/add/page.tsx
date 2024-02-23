@@ -12,10 +12,11 @@ import {
 import {
   ChangeEvent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
-import { ArrayContext } from "@/app/providers";
+import { ArrayContext } from "@/app_prev/providers";
 export default function Home() {
   const walletArr = ["SOL", "Tensor", "Doge"];
   //   const addressArr = [
@@ -23,9 +24,6 @@ export default function Home() {
   //     "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
   //     "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
   //   ];
-
-  const { array, setArray } =
-    useContext(ArrayContext);
 
   const [walletType, setWalletType] = useState(
     walletArr[0]
@@ -35,21 +33,46 @@ export default function Home() {
     useState("");
 
   const [walletHolding, setWalletHolding] =
-    useState<string[]>([]);
+    useState(() => {
+      const savedHolding = sessionStorage.getItem(
+        "walletHolding"
+      );
+      return savedHolding
+        ? JSON.parse(savedHolding)
+        : [];
+    });
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "walletHolding",
+      JSON.stringify(walletHolding)
+    );
+  }, [walletHolding]);
 
   function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault();
 
-    console.log(walletAddress);
+    validateWalletAdd();
 
-    // setWalletHolding([
-    //   ...walletHolding,
-    //   walletAddress,
-    // ]);
-    setArray([...array, walletAddress]);
-    console.log(walletHolding);
+    // THIS FUNCTION WILL ADD THE NEW ADDRESS
+    // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
+
+    function validateWalletAdd() {
+      if (walletHolding.includes(walletAddress)) {
+        alert(
+          "The wallet address you entered has already been stored! Try entering another wallet address!"
+        );
+      } else {
+        setWalletHolding([
+          ...walletHolding,
+          walletAddress,
+        ]);
+
+        console.log(walletHolding);
+      }
+    } // End of validateWalletAdd
   }
 
   function handleDropdownChange(
@@ -128,9 +151,11 @@ export default function Home() {
               </CardHeader>
               <Divider />
               <CardBody>
-                {array.map((address, i) => (
-                  <p key={i}>{address}</p>
-                ))}
+                {walletHolding.map(
+                  (address, i) => (
+                    <p key={i}>{address}</p>
+                  )
+                )}
               </CardBody>
               <Divider />
               <CardFooter>footer</CardFooter>

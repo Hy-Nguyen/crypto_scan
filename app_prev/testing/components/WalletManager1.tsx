@@ -1,6 +1,7 @@
-import CardLoading from "@/app/components/Skeleton";
-import SummaryTable from "@/app/components/SummaryTable";
+import CardLoading from "@/app_prev/components/Skeleton";
+import SummaryTable from "@/app_prev/components/SummaryTable";
 import TestCard from "./TestCard";
+import WalletDisplay from "./WalletDisplay";
 import {
   ChangeEvent,
   Suspense,
@@ -8,11 +9,7 @@ import {
 } from "react";
 
 export default function WalletManager() {
-  const addressArr = [
-    "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1",
-    "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
-    "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
-  ];
+  var addressArr = WalletDisplay();
 
   return (
     <div className="align-center py-32 mx-40">
@@ -20,12 +17,13 @@ export default function WalletManager() {
 
       <div className="flex w-full">
         <div className="w-1/2 mr-1.5">
-          {addressArr.map((wallet, key) => (
-            <TestCard
-              walletAddress={wallet}
-              key={key}
-            />
-          ))}
+          {addressArr &&
+            addressArr.map((wallet, key) => (
+              <TestCard
+                walletAddress={wallet}
+                key={key}
+              />
+            ))}
         </div>
         <div className="w-1/2 ml-1.5">
           <SummaryTable wallets={addressArr} />

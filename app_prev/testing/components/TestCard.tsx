@@ -3,32 +3,17 @@ import getTensor from "@/scanner_code/tensorAxios";
 import { Divider } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 
-export default function ViewCard(props: {
+export default async function ViewCard(props: {
   walletAddress: string;
 }) {
-  const [citrus, setCitrus] = useState();
-  const [tensor, setTensor] = useState();
-  useEffect(() => {
-    async function fetchData() {
-      const citrusData = await getCitrus(
-        props.walletAddress
-      );
-      const tensorData = await getTensor(
-        props.walletAddress
-      );
+  
 
-      setCitrus(citrusData);
-      setTensor(tensorData);
-    }
-    fetchData();
-  }, [props.walletAddress]);
-
-  //   const citrus = await getCitrus(
-  //     props.walletAddress
-  //   );
-  //   const tensor = await getTensor(
-  //     props.walletAddress
-  //   );
+    const citrus = await getCitrus(
+      props.walletAddress
+    );
+    const tensor = await getTensor(
+      props.walletAddress
+    );
 
   return (
     <>

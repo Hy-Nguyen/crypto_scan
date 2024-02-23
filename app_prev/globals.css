@@ -41,13 +41,7 @@ body {
 .bg-p3-alt {
   background-color: rgb(156, 158, 202);
 }
-.bg-p3-alt-light {
-  background-color: rgb(222, 222, 243);
-}
 tr td,
 tr th {
   width: 8.5rem;
-}
-.wallet:hover {
-  background-color: rgb(232, 221, 252);
 }

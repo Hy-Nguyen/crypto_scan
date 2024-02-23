@@ -102,14 +102,14 @@ export default function WalletManager() {
       </div>
       <div className="flex w-full">
         <div className="w-1/2 mr-1.5">
-          {/* {addressArr.map((wallet, key) => (
-            <ViewCard
+          {addressArr.map((wallet, key) => (
+            <TestCard
               walletAddress={wallet}
               key={key}
             />
-          ))} */}
+          ))}
 
-          <Suspense fallback={<CardLoading />}>
+          {/* <Suspense fallback={<CardLoading />}>
             <TestCard
               walletAddress={addressArr[0]}
             />
@@ -123,7 +123,7 @@ export default function WalletManager() {
             <TestCard
               walletAddress={addressArr[1]}
             />
-          </Suspense>
+          </Suspense> */}
         </div>
         <div className="w-1/2 ml-1.5">
           <SummaryTable wallets={addressArr} />
