@@ -64,7 +64,11 @@ export default async function Home({
           <DropDown selected={selected || ""} />
 
           {citrus && (
-            <TestCard walletAddress={selected} />
+            <div className="flex justify-center">
+              <TestCard
+                walletAddress={selected}
+              />
+            </div>
           )}
         </div>
       </main>
