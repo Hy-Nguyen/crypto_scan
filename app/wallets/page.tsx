@@ -3,9 +3,11 @@ import { DropDown } from "./Dropdown";
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import TestCard from "../components/TestCard";
+import { Suspense } from "react";
+import CardLoading from "../components/Skeleton";
 
 // This part is important!
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 const fetchCitrus = async (wallet: string) => {
   if (!wallet) return null;
@@ -26,6 +28,7 @@ const fetchCitrus = async (wallet: string) => {
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
       },
     };
+
 
     var citrusResponse = await axios.get(
       citrusUrl,
@@ -65,9 +68,11 @@ export default async function Home({
 
           {citrus && (
             <div className="flex justify-center">
-              <TestCard
-                walletAddress={selected}
-              />
+              <Suspense fallback={<CardLoading/>}>
+                <TestCard
+                  walletAddress={selected}
+                />
+              </Suspense>
             </div>
           )}
         </div>

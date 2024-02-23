@@ -7,7 +7,7 @@ import {
 export default function CardLoading() {
   return (
     <Card
-      className="w-full space-y-5 p-4 my-3"
+      className="w-1/2 space-y-5 p-4 my-3"
       radius="lg"
     >
       <div className="space-y-3">

@@ -29,7 +29,7 @@ export default function App() {
           <Link
             color="foreground"
             href="/"
-            className="mx-4 text-lg"
+            className="mx-4 text-lg navItem"
           >
             Add
           </Link>
@@ -38,7 +38,7 @@ export default function App() {
           <Link
             color="foreground"
             href="/wallets"
-            className="mx-4 text-lg"
+            className="mx-4 text-lg navItem"
           >
             Wallets
           </Link>

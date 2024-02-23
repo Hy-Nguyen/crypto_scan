@@ -12,6 +12,11 @@ import { useEffect, useState } from "react";
 export default async function ViewCard(props: {
   walletAddress: string;
 }) {
+  // 5 second delay
+  await new Promise((res) =>
+    setTimeout(res, 5000)
+  );
+
   const citrus = await getCitrus(
     props.walletAddress
   );
