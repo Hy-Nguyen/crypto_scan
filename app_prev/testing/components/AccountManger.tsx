@@ -9,13 +9,7 @@ import {
   Image,
 } from "@nextui-org/react";
 
-import {
-  ChangeEvent,
-  useContext,
-  useState,
-} from "react";
-
-import { ArrayContext } from "@/app_prev/providers";
+import { ChangeEvent, useState } from "react";
 
 export default function AccountManager() {
   const walletArr = ["SOL", "Tensor", "Doge"];
@@ -24,8 +18,6 @@ export default function AccountManager() {
   //     "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
   //     "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
   //   ];
-
-  const { setArray } = useContext(ArrayContext);
 
   const [walletType, setWalletType] = useState(
     walletArr[0]

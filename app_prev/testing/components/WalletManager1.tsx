@@ -18,12 +18,14 @@ export default function WalletManager() {
       <div className="flex w-full">
         <div className="w-1/2 mr-1.5">
           {addressArr &&
-            addressArr.map((wallet, key) => (
-              <TestCard
-                walletAddress={wallet}
-                key={key}
-              />
-            ))}
+            addressArr.map(
+              (wallet: string, key: any) => (
+                <TestCard
+                  walletAddress={wallet}
+                  key={key}
+                />
+              )
+            )}
         </div>
         <div className="w-1/2 ml-1.5">
           <SummaryTable wallets={addressArr} />

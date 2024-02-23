@@ -12,8 +12,11 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 
+const storageItem = sessionStorage.getItem(
+  "walletHolding"
+);
 const options = JSON.parse(
-  sessionStorage.getItem("walletHolding")
+  storageItem ? storageItem : "{}"
 );
 
 export const DropDown = ({

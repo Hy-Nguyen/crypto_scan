@@ -1,6 +1,3 @@
-import { useContext, useEffect } from "react";
-import { ArrayContext } from "../providers";
-
 import WalletManager from "./components/WalletManager1";
 
 export default function Home() {

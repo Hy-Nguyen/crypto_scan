@@ -11,12 +11,10 @@ import {
 
 import {
   ChangeEvent,
-  useContext,
   useEffect,
   useState,
 } from "react";
 
-import { ArrayContext } from "@/app_prev/providers";
 export default function Home() {
   const walletArr = ["SOL", "Tensor", "Doge"];
   //   const addressArr = [
@@ -152,7 +150,7 @@ export default function Home() {
               <Divider />
               <CardBody>
                 {walletHolding.map(
-                  (address, i) => (
+                  (address:string, i:number) => (
                     <p key={i}>{address}</p>
                   )
                 )}

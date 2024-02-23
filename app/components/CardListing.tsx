@@ -8,6 +8,9 @@ import Link from "next/link";
 export default function WalletAddress({
   address,
   refresh,
+}: {
+  address: any;
+  refresh: any;
 }) {
   function deleteItem() {
     let array = JSON.parse(
