@@ -27,6 +27,8 @@ export default function AccountManager() {
   //     "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
   //   ];
 
+
+
   const [walletType, setWalletType] = useState(
     walletArr[0]
   );
@@ -47,8 +49,8 @@ export default function AccountManager() {
 
     validateWalletAdd()
 
-    // THIS FUNCTION WILL ADD THE NEW ADDRESS
-    // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
+    // THIS FUNCTION WILL ADD THE NEW ADDRESS - completed
+    // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE - completed
 
     function validateWalletAdd() {
       if (walletHolding.includes(walletAddress)) {
@@ -64,7 +66,21 @@ export default function AccountManager() {
     }; // End of validateWalletAdd
 
 
-    
+
+    // CHANGE VARIABLES TO CONNECT DELETE CARD TO DELETING ITEM IN ARRAY WITH MIGUELS CODe
+    function deleteWalletAdd() {
+
+    const addressIndex = walletHolding.indexOf(walletAddress)
+
+    walletHolding.splice(addressIndex, 1)
+
+    console.log(walletHolding)
+
+    } // End of deleteWalletAdd
+
+  
+
+  
 
   }
 
