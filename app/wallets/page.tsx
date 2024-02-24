@@ -66,8 +66,13 @@ export default async function Home({
         <NavBar />
         <div className="h-screen ">
           {/* wORK HERE */}
-          
-          <SummaryHoldings/>
+
+
+          <div className="flex justify-center">
+          <SummaryHoldings/></div>
+
+
+
           <DropDown selected={selected || ""} />
 
           {citrus && (

@@ -50,7 +50,7 @@ export const DropDown = ({
   };
 
   return (
-    <div className="flex justify-center mt-40 ">
+    <div className="flex justify-center mt-8 ">
       <Select
         label="Select Your Wallet"
         value={selected}
