@@ -19,6 +19,7 @@ export default function SummaryHoldings(){
                   src="https://solana.com/_next/static/media/logotype.e4df684f.svg"
                   width={400}
                 />
+                <p>Hello</p>
               </CardHeader>
               <Divider />
               <CardHeader className="text-lg font-bold flex justify-center">
