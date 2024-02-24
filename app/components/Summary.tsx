@@ -10,7 +10,7 @@ import {
 export default function SummaryHoldings(){
     return (
         <>
-         <Card shadow="lg" className="w-1/2 mt-20">
+         <Card shadow="lg" className="w-1/3 mt-20">
               <CardHeader className="flex gap-0 justify-center bg-p3-alt-light text-xl font-bold">
                 <p>Summary of Holdings</p>
                 {/* <Image
