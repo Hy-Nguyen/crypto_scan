@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import TestCard from "../components/TestCard";
 import { Suspense } from "react";
 import CardLoading from "../components/Skeleton";
+import SummaryHoldings from "../components/Summary";
 
 // This part is important!
 // export const dynamic = "force-dynamic";
@@ -64,6 +65,9 @@ export default async function Home({
       <main className="flex flex-col justify-center bg-p3-alt w-full">
         <NavBar />
         <div className="h-screen ">
+          {/* wORK HERE */}
+          
+          <SummaryHoldings/>
           <DropDown selected={selected || ""} />
 
           {citrus && (
