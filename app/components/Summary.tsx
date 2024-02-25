@@ -1,40 +1,87 @@
+"use client";
 import {
   Card,
   CardHeader,
   CardBody,
   Divider,
-  Image,
-  Tooltip,
 } from "@nextui-org/react";
 
-export default function SummaryHoldings(){
-    return (
-        <>
-         <Card shadow="lg" className="w-1/3 mt-20">
-              <CardHeader className="flex gap-0 justify-center bg-p3-alt-light text-xl font-bold">
-                <p>Summary of Holdings</p>
-              </CardHeader>
+import { useEffect, useState } from "react";
+import getCitrusSummary from "@/scanner_code/summary";
 
-              <CardBody className="p-0 min-h-52">
-    <div className='mr-5 ml-5 mt-1'>
-        <p className="p-0.25">Total Held Solana:  {/*( = total nft fee + total nft liquidity pool value + tensor nft value + solscan holdings)*/}</p>
-        <Divider />
-        <p className="p-0.25">Total Open Offers: {/*(= total open offers on citrus) (Toggle dropdown for more information arrow down)*/}</p>
-        <Divider />
-        <p className="p-0.25">Total NFT Value: </p>
-        <Divider />
-        <p className="p-0.25">Total NFT Orders: </p>
-        <Divider />
-        <p className="p-0.25">Total Tensor Fees:  </p>
-        <Divider />
-        <p className="p-0.25">Total Citrus Pending Offers:  </p>
-        <Divider />
-        <p className="p-0.25">Total Citrus Active Offers:  </p>
-        <Divider />
-        <p className="p-0.25">Total Solana Held Inactive:  {/*(solscan stuff)*/}</p>
-    </div>
-</CardBody>
-            </Card>
-        </>
-    )
+interface ResponseData {
+  totalCurrentLoaned: number;
+  totalPendingOffers: number;
+  total: number;
+}
+export default function SummaryHoldings() {
+  const [data, setData] = useState(null);
+  var walletHolding;
+  const sessionData = sessionStorage.getItem(
+    "walletHolding"
+  );
+
+  if (sessionData) {
+    walletHolding = JSON.parse(sessionData);
+  }
+  useEffect(() => {
+    getCitrusSummary(walletHolding)
+      .then((result) => setData(result))
+      .catch((err) => console.log(err));
+  });
+
+  return (
+    <>
+      <p className="flex-row">
+        {data &&
+          data.map((add: string) => (
+            <p key={add}>{add}</p>
+          ))}
+      </p>
+      <Card shadow="lg" className="w-1/3 mt-20">
+        <CardHeader className="flex flex-row gap-0 justify-center bg-p3-alt-light text-xl font-bold">
+          <p>Summary of Holdings</p>
+        </CardHeader>
+
+        <CardBody className="p-0 min-h-52">
+          <div className="mr-5 ml-5 mt-1">
+            <p className="p-0.25">
+              Total Held Solana:{" "}
+              {/*( = total nft fee + total nft liquidity pool value + tensor nft value + solscan holdings)*/}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total Open Offers:{" "}
+              {/*(= total open offers on citrus) (Toggle dropdown for more information arrow down)*/}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total NFT Value:{" "}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total NFT Orders:{" "}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total Tensor Fees:{" "}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total Citrus Pending Offers:{" "}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total Citrus Active Offers:{" "}
+            </p>
+            <Divider />
+            <p className="p-0.25">
+              Total Solana Held Inactive:{" "}
+              {/*(solscan stuff)*/}
+            </p>
+          </div>
+        </CardBody>
+      </Card>
+    </>
+  );
 }

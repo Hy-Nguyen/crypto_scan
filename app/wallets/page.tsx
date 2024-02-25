@@ -14,12 +14,6 @@ const fetchCitrus = async (wallet: string) => {
   if (!wallet) return null;
 
   try {
-    // const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`);
-
-    // if (!response.ok) return null;
-
-    // const data = await response.json();
-
     var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
     var citrusHeader = {
       headers: {
@@ -29,7 +23,6 @@ const fetchCitrus = async (wallet: string) => {
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
       },
     };
-
 
     var citrusResponse = await axios.get(
       citrusUrl,
@@ -67,17 +60,17 @@ export default async function Home({
         <div className="h-screen ">
           {/* wORK HERE */}
 
-
           <div className="flex justify-center">
-          <SummaryHoldings/></div>
-
-
+            <SummaryHoldings />
+          </div>
 
           <DropDown selected={selected || ""} />
 
           {citrus && (
             <div className="flex justify-center">
-              <Suspense fallback={<CardLoading/>}>
+              <Suspense
+                fallback={<CardLoading />}
+              >
                 <TestCard
                   walletAddress={selected}
                 />
