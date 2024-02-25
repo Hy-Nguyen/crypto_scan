@@ -12,6 +12,7 @@ const wallets = [
 
 getCitrusSummary(wallets);
 
+// passes in array
 async function getCitrusSummary(wallet) {
   // var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
 
