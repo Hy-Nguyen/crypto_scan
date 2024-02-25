@@ -10,28 +10,28 @@ import {
 export default function SummaryHoldings(){
     return (
         <>
-         <Card shadow="lg" className="w-1/3 mt-20">
+         <Card shadow="lg" className="w-2/5 mt-40">
               <CardHeader className="flex gap-0 justify-center bg-p3-alt-light text-xl font-bold">
                 <p>Summary of Holdings</p>
               </CardHeader>
 
               <CardBody className="p-0 min-h-52">
-    <div className='mr-5 ml-5 mt-1'>
-        <p className="p-0.25">Total Held Solana:  {/*( = total nft fee + total nft liquidity pool value + tensor nft value + solscan holdings)*/}</p>
+    <div className='mt-1'>
+        <p className="mr-10 ml-10">Total Held Solana:  {/*( = total nft fee + total nft liquidity pool value + tensor nft value + solscan holdings)*/}</p>
         <Divider />
-        <p className="p-0.25">Total Open Offers: {/*(= total open offers on citrus) (Toggle dropdown for more information arrow down)*/}</p>
+        <p className="mr-10 ml-10">Total Open Offers: {/*(= total open offers on citrus) (Toggle dropdown for more information arrow down)*/}</p>
         <Divider />
-        <p className="p-0.25">Total NFT Value: </p>
+        <p className="mr-10 ml-10">Total NFT Value: </p>
         <Divider />
-        <p className="p-0.25">Total NFT Orders: </p>
+        <p className="mr-10 ml-10">Total NFT Orders: </p>
         <Divider />
-        <p className="p-0.25">Total Tensor Fees:  </p>
+        <p className="mr-10 ml-10">Total Tensor Fees:  </p>
         <Divider />
-        <p className="p-0.25">Total Citrus Pending Offers:  </p>
+        <p className="mr-10 ml-10">Total Citrus Pending Offers:  </p>
         <Divider />
-        <p className="p-0.25">Total Citrus Active Offers:  </p>
+        <p className="mr-10 ml-10">Total Citrus Active Offers:  </p>
         <Divider />
-        <p className="p-0.25">Total Solana Held Inactive:  {/*(solscan stuff)*/}</p>
+        <p className="mr-10 ml-10">Total Solana Held Inactive:  {/*(solscan stuff)*/}</p>
     </div>
 </CardBody>
             </Card>
