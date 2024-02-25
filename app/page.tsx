@@ -153,7 +153,7 @@ export default function Home() {
                 src="https://solana.com/_next/static/media/logotype.e4df684f.svg"
                 width={400}/>
                 </CardHeader>
-
+                
                 <Divider />
                 <CardHeader className="text-lg font-bold flex justify-center">
                   <h2 className="text-center">
@@ -161,14 +161,17 @@ export default function Home() {
                   </h2>
                   </CardHeader>
                   <Divider />
-                  <CardBody className=" p-0 min-h-52">
+                  <CardBody className=" p-0 mr-10 min-h-52">
                     <div>
+                      
                       {walletHolding.map((address: string, i: number) => (
                       <WalletAddress
                       address={address}
                       key={i}
+                      
                       refresh={deleteRefresh}
                       /> ))}
+                      
                       </div>
                     </CardBody>
               </Card>
