@@ -13,29 +13,41 @@ export default function WalletAddress({
   refresh: any;
 }) {
   // Limit the length of the address to 80 characters
-  const shortenedAddress = address.length > 80 ? `${address.substring(0, 80)}...` : address;
+  const shortenedAddress =
+    address.length > 80
+      ? `${address.substring(0, 80)}...`
+      : address;
 
   function deleteItem() {
-    let array = JSON.parse(sessionStorage.getItem("walletHolding") || "[]");
+    let array = JSON.parse(
+      sessionStorage.getItem("walletHolding") ||
+        "[]"
+    );
     let index = array.indexOf(address);
 
     if (index !== -1) {
       array.splice(index, 1);
     }
 
-    sessionStorage.setItem("walletHolding", JSON.stringify(array));
+    sessionStorage.setItem(
+      "walletHolding",
+      JSON.stringify(array)
+    );
     alert("deleted!");
     refresh(); // Refresh parent component
   }
 
   return (
     <>
-      <div className="p-0 relative">
-        <Link 
+      <div className="p-0 relative wallet">
+        <Link
           href={`/wallets?selected=${address}`}
+          className=""
         >
           {/* Display shortened address */}
-          <div className="pl-10 py-2 pr-2 mr-14">{shortenedAddress}</div>
+          <div className="pl-10 py-2 pr-2 mr-14">
+            {shortenedAddress}
+          </div>
         </Link>
         <Button
           onClick={deleteItem}
@@ -52,5 +64,4 @@ export default function WalletAddress({
       <Divider />
     </>
   );
-
 }
