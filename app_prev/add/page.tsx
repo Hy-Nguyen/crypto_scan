@@ -4,28 +4,30 @@ import {
   Card,
   CardHeader,
   CardBody,
+  CardFooter,
   Divider,
   Image,
-  Tooltip,
 } from "@nextui-org/react";
 
 import {
   ChangeEvent,
-  useContext,
   useEffect,
   useState,
 } from "react";
-import NavBar from "./components/NavBar";
-import WalletAddress from "./components/CardListing";
 
 export default function Home() {
   const walletArr = ["SOL", "Tensor", "Doge"];
+  //   const addressArr = [
+  //     "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1",
+  //     "G7AWxhckzMNgnPpWY8uYJULFZAwM8dmGWXWmK1FY5e12",
+  //     "7Qud71boqj86Pi8TBkSTzY2h3VPASGpqCTb5gWoG9fLM",
+  //   ];
 
   const [walletType, setWalletType] = useState(
     walletArr[0]
   );
 
-  var [walletAddress, setWalletAddress] =
+  const [walletAddress, setWalletAddress] =
     useState("");
 
   const [walletHolding, setWalletHolding] =
@@ -37,19 +39,6 @@ export default function Home() {
         ? JSON.parse(savedHolding)
         : [];
     });
-  // Function to sync sessionStorage with state
-  function deleteRefresh() {
-    const sessionArray = JSON.parse(
-      sessionStorage.getItem("walletHolding") ||
-        "[]"
-    );
-    setWalletHolding(sessionArray);
-  }
-
-  // Call function on component mount
-  useEffect(() => {
-    deleteRefresh();
-  }, []);
 
   useEffect(() => {
     sessionStorage.setItem(
@@ -63,11 +52,7 @@ export default function Home() {
   ) {
     e.preventDefault();
 
-    if (walletAddress == "") {
-      alert("Empty input! Please try again");
-    } else {
-      validateWalletAdd();
-    }
+    validateWalletAdd();
 
     // THIS FUNCTION WILL ADD THE NEW ADDRESS
     // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
@@ -82,8 +67,9 @@ export default function Home() {
           ...walletHolding,
           walletAddress,
         ]);
+
+        console.log(walletHolding);
       }
-      setWalletAddress("");
     } // End of validateWalletAdd
   }
 
@@ -101,15 +87,12 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col justify-center bg-p3-alt ">
-        <nav>
-          <NavBar />
-        </nav>
-        <div className="flex-col justify-center align-center py-40 h-screen ">
-          <div className=" flex justify-center w-full">
+      <main className="flex flex-col justify-center bg-p3-alt w-full">
+        <div className="align-center py-32 mx-40">
+          <div className="">
             <form
               onSubmit={handleSubmit}
-              className=" flex flex-row  pb-10"
+              className=" flex flex-row justify-center pb-10"
             >
               <select
                 value={walletType}
@@ -131,25 +114,20 @@ export default function Home() {
                 placeholder="Enter Wallet Address"
                 value={walletAddress}
                 onChange={handleAddressChange}
-                className="text-black h-12 min-w-96 w-full pl-2"
+                className="text-black h-12 w-full pl-2"
               />
 
-              <Tooltip
-                className="text-black"
-                content="Add Wallet!"
+              <button
+                type="submit"
+                className="bg-p3 hover:bg-p3 text-white py-2 px-8 h-12 rounded-r-xl"
               >
-                <button
-                  type="submit"
-                  className="bg-p3 hover:bg-p3 text-white py-2 px-8 h-12 rounded-r-xl"
-                >
-                  Add
-                </button>
-              </Tooltip>
+                Add
+              </button>
             </form>
           </div>
           <div className="flex justify-center">
-            <Card shadow="lg" className="w-1/2">
-              <CardHeader className="flex gap-0 justify-center bg-p3-alt-light">
+            <Card className="max-w-[400px]">
+              <CardHeader className="flex gap-0 justify-center">
                 <Image
                   alt="nextui logo"
                   height={200}
@@ -159,31 +137,26 @@ export default function Home() {
                 />
               </CardHeader>
               <Divider />
-              <CardHeader className="text-lg font-bold flex justify-center">
-                <h2 className="text-center">
-                  Your Wallets
-                </h2>
+              <CardHeader className="flex justify-center">
+                <div className="flex flex-col items-center ">
+                  <p className="text-lg">
+                    Your Solana
+                  </p>
+                  <p className="text-small text-default-500">
+                    nextui.org
+                  </p>
+                </div>
               </CardHeader>
               <Divider />
-
-              <CardBody className=" p-0 min-h-52">
-                <div>
-                  {walletHolding.map(
-                    (
-                      address: string,
-                      i: number
-                    ) => (
-                      <>
-                        <WalletAddress
-                          address={address}
-                          key={i}
-                          refresh={deleteRefresh}
-                        />
-                      </>
-                    )
-                  )}
-                </div>
+              <CardBody>
+                {walletHolding.map(
+                  (address:string, i:number) => (
+                    <p key={i}>{address}</p>
+                  )
+                )}
               </CardBody>
+              <Divider />
+              <CardFooter>footer</CardFooter>
             </Card>
           </div>
         </div>

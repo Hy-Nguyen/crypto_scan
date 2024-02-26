@@ -1,8 +1,13 @@
-import fetch from "node-fetch";
+// Import axios
+import axios from "axios";
 
 export default async function getCitrus(
   wallet = ""
 ) {
+  if (wallet === "") {
+    wallet =
+      "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  }
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
   var citrusHeader = {
     headers: {
@@ -13,13 +18,12 @@ export default async function getCitrus(
     },
   };
 
-  var citrusResponse = await fetch(
+  var citrusResponse = await axios.get(
     citrusUrl,
     citrusHeader
   );
-
   var citrusResponseJson =
-    await citrusResponse.json();
+    await citrusResponse.data;
 
   var currentLoaned =
     citrusResponseJson["loanSummary"][
@@ -32,9 +36,11 @@ export default async function getCitrus(
 
   var citrusTotal = currentLoaned + pendingOffers;
 
-  console.log(
-    "Citrus Loans Total: " + citrusTotal
-  );
+  console.log({
+    loaned: currentLoaned.toFixed(2),
+    offers: pendingOffers.toFixed(2),
+    total: citrusTotal.toFixed(2),
+  });
   return {
     loaned: currentLoaned.toFixed(2),
     offers: pendingOffers.toFixed(2),

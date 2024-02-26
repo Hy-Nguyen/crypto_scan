@@ -1,8 +1,10 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
-export default async function getCitrus(
-  wallet = ""
-) {
+async function getCitrus(wallet = "") {
+  if (wallet == "") {
+    wallet =
+      "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
+  }
   var citrusUrl = `https://citrus.famousfoxes.com/citrus/userSocials/${wallet}`;
   var citrusHeader = {
     headers: {
@@ -11,6 +13,7 @@ export default async function getCitrus(
       "user-agent":
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
     },
+    mode: "no-cors",
   };
 
   var citrusResponse = await fetch(
@@ -32,12 +35,18 @@ export default async function getCitrus(
 
   var citrusTotal = currentLoaned + pendingOffers;
 
-  console.log(
-    "Citrus Loans Total: " + citrusTotal
-  );
+  console.log({
+    loaned: currentLoaned.toFixed(2),
+    offers: pendingOffers.toFixed(2),
+    total: citrusTotal.toFixed(2),
+  });
   return {
     loaned: currentLoaned.toFixed(2),
     offers: pendingOffers.toFixed(2),
     total: citrusTotal.toFixed(2),
   };
 }
+
+getCitrus(
+  "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1"
+);

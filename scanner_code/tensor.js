@@ -1,17 +1,15 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
-async function getTensor(
-  wallet = "",
-  api_key = ""
+export default async function getTensor(
+  wallet = ""
 ) {
   if (wallet == "") {
     wallet =
       "428JqXgFg3yjuMoa4ZkKi7MBJLn2thvpSTH6HS2NLQC1";
   }
-  if (api_key == "") {
-    api_key =
-      "da2b8de2-2234-4d30-bf6e-0de556ed5858";
-  }
+
+  var api_key =
+    "da2b8de2-2234-4d30-bf6e-0de556ed5858";
 
   const variables = { owner: wallet };
 
@@ -165,61 +163,24 @@ async function getTensor(
           pool.pool.solBalance / div;
         totalPoolLiquidity += poolLiquidityAmount;
       }
-      // Logger.log(
+
+      // console.log(
       //   `Total NFT Pool Value: ${totalPoolNFTValue}`
       // );
-      // Logger.log(
+      // console.log(
       //   `Total NFT Fee Value: ${totalPoolFeeValue}`
       // );
-      // Logger.log(
+      // console.log(
       //   `Total NFT Liquidity Pool Value: ${totalPoolLiquidity}`
       // );
-
-      // Array for NFT values and Wallets
-      const tensorUserData = [];
-
-      // Intialize
-      const tensorData = {
-        walletAddress: wallet,
-        nftPoolValue: totalPoolNFTValue,
-        nftFeeValue: totalPoolFeeValue,
-        nftLiquidityPoolValue: totalPoolLiquidity,
+      const res = {
+        NFTValue: totalPoolNFTValue.toFixed(2),
+        FeeValue: totalPoolFeeValue.toFixed(2),
+        PoolLiquidity:
+          totalPoolLiquidity.toFixed(2),
       };
-
-      // Check if there is a existing Json File
-      try {
-        const data = fs.readFileSync(
-          "tensor.json",
-          "utf8"
-        );
-        tensorUserData = JSON.parse(data);
-      } catch (err) {}
-
-      // Push tensor data to tensor user array
-      tensorUserData.push(tensorData);
-
-      // Convert UserData to JSON
-      const jsonData = JSON.stringfy(
-        tensorUserData,
-        null,
-        2
-      );
-
-      // Write JSON Data to Json File
-      fs.writeFile(
-        "tensor.json",
-        jsonData,
-        "utf8",
-        (err) => {
-          if (err) {
-            console.error(
-              "There was an error writing to the file: ",
-              err
-            );
-            return;
-          }
-        }
-      );
+      console.log(res);
+      return res;
     }
   } catch (error) {
     console.error(
@@ -228,7 +189,3 @@ async function getTensor(
     );
   }
 }
-
-// HI
-
-// asdasdgit
