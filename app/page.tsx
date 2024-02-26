@@ -63,7 +63,11 @@ export default function Home() {
   ) {
     e.preventDefault();
 
-    validateWalletAdd();
+    if (walletAddress == "") {
+      alert("Empty input! Please try again");
+    } else {
+      validateWalletAdd();
+    }
 
     // THIS FUNCTION WILL ADD THE NEW ADDRESS
     // ADD VALIDATION BEFORE AND ADD FUNCTION INSIDE
