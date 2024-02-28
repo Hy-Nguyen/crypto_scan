@@ -12,6 +12,12 @@ export default function WalletAddress({
   address: any;
   refresh: any;
 }) {
+  // Limit the length of the address to 80 characters
+  const shortenedAddress =
+    address.length > 80
+      ? `${address.substring(0, 80)}...`
+      : address;
+
   function deleteItem() {
     let array = JSON.parse(
       sessionStorage.getItem("walletHolding") ||
@@ -33,12 +39,14 @@ export default function WalletAddress({
 
   return (
     <>
-      <div className="flex justify-between items-center wallet">
+      <div className="p-0 relative wallet">
         <Link
           href={`/wallets?selected=${address}`}
+          className=""
         >
-          <div className="pl-10 py-2 mr-14">
-            {address}
+          {/* Display shortened address */}
+          <div className="pl-10 py-2 pr-2 mr-14">
+            {shortenedAddress}
           </div>
         </Link>
         <Button
@@ -48,7 +56,7 @@ export default function WalletAddress({
           isIconOnly
           color="secondary"
           variant="bordered"
-          className="mr-4"
+          className="absolute top-1 right-6 " // Position delete button absolutely and add padding to the left
         >
           X
         </Button>
